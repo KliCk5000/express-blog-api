@@ -1,0 +1,24 @@
+{
+  "name": "express-blog-api",
+  "version": "1.0.0",
+  "description": "simple blog api using express",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KliCk5000/express-blog-api.git"
+  },
+  "author": "Nick Dean",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KliCk5000/express-blog-api/issues"
+  },
+  "homepage": "https://github.com/KliCk5000/express-blog-api#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "uuid": "^3.3.2"
+  }
+}
