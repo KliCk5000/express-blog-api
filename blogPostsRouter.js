@@ -18,7 +18,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", jsonParser, (req, res) => {
-  // ensure `name` and `budget` are in request body
+  // ensure `title`, `content` and `author` are in request body
   const requiredFields = ["title", "content", "author"];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
