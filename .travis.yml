@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: LkpvFOKmflK7W1sH2p74adnAjIFkrdmlwz+QcomwttaH/IkXCjIMHvnMPb2JuLT6v4EMr1QVaHasJpcIepYcKz9YyvSR1CPUVin1/VxPQGZqJka2SKHv/s+sdPGCzqhw2VXAYKXaWpQengYFR5pIdCLfGGk6xNVl61DOPjBD4MJiqrljpUouuDRVneSQLpfAOOkXNZAyOmtr2JdaFPrPaGkr2KN2RFJ9XH+rBGRrgwOaziTKTZsOavu45j+nVsTBzCBazPXK9IUcO+HJOqgmuAcMsFdi0kNZl8vDQgftUxLZZ/NpqtS/tMWgeo0pX5ioZRryDuQ1uUmqLtJbdEywAMakey7+eI+i0zpHqPVxUxG6HaY2kabWmFpisiwmHY0P8MdNAG13YyqyvPE8UNVi/VfYccuqIYucD3CX8y7bN+VwVIOoX4VUFYTlqlP2YUv/qyE2/7pY6gG5L3PhyjJOd78/MpDEeVRpSdAXOGiLlcHJtWakmvidTvCGAELQFFLIcDIL1CCokh+yb1Zc/zMZPqb0t5E0PjNJmeHF8qbjUHMVArBFQDwdcPd96WhaqwcJydGWNckkTYyEJ2q8vK4tQFjo+M/H4UwAVcp0ObGKjCFk+LcA2j54+dgjK74Magl8RH6hP32U1yTCYfPRXehp0mf/FUvIDNip8O6oNqWThAY=
+  app: damp-woodland-34715
+  on:
+    repo: KliCk5000/express-blog-api
