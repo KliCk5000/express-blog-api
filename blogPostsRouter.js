@@ -4,17 +4,21 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 
-const { BlogPosts } = require("./models");
+const { BlogPost } = require("./models");
 
-// Create some blog posts to look at
-BlogPosts.create("Blog 1", "This is the content of blog 1.", "Nick Dean");
-BlogPosts.create("Blog 2", "This is the content of blog 2.", "Nick Dean");
-BlogPosts.create("Blog 3", "This is the content of blog 3.", "Nick Dean");
 
 // send back JSON representation of all blog posts
 // on GET requests to root
 router.get("/", (req, res) => {
-  res.json(BlogPosts.get());
+  //res.json(BlogPosts.get());
+  BlogPost.find()
+    .then(posts => {
+      return res.json(posts.map(post => post.serialize()));
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Internal server error" });
+    });
 });
 
 router.post("/", jsonParser, (req, res) => {
@@ -28,7 +32,7 @@ router.post("/", jsonParser, (req, res) => {
       return res.status(400).send(message);
     }
   }
-  const item = BlogPosts.create(
+  const item = BlogPost.create(
     req.body.title,
     req.body.content,
     req.body.author
@@ -37,7 +41,7 @@ router.post("/", jsonParser, (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  BlogPosts.delete(req.params.id);
+  BlogPost.delete(req.params.id);
   console.log(`Deleted blog post item \`${req.params.ID}\``);
   res.status(204).end();
 });
@@ -60,7 +64,7 @@ router.put("/:id", jsonParser, (req, res) => {
     return res.status(400).send(message);
   }
   console.log(`Updating blog post item \`${req.params.id}\``);
-  const updatedItem = BlogPosts.update({
+  const updatedItem = BlogPost.update({
     id: req.params.id,
     title: req.body.title,
     content: req.body.content,
