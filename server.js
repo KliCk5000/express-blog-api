@@ -9,7 +9,8 @@ const { PORT, DATABASE_URL } = require("./config");
 
 const app = express();
 
-const BlogPosts = require("./blogPostsRouter");
+const BlogPost = require("./blogPostsRouter");
+const Author = require("./authorsRouter");
 
 app.use(express.json());
 app.use(morgan("common"));
@@ -19,7 +20,8 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-app.use("/blog-posts", BlogPosts);
+app.use("/blog-posts", BlogPost);
+app.use("/authors", Author);
 
 let server;
 
@@ -27,7 +29,7 @@ function runServer(databaseUrl, port = PORT) {
   return new Promise((resolve, reject) => {
     mongoose.connect(
       databaseUrl,
-      { useNewUrlParser: true },
+      { useCreateIndex: true, useNewUrlParser: true },
       err => {
         if (err) {
           return reject(err);
