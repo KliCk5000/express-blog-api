@@ -1,37 +1,37 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
-var authorSchema = mongoose.Schema({
-  firstName: 'string',
-  lastName: 'string',
+const authorSchema = mongoose.Schema({
+  firstName: "string",
+  lastName: "string",
   userName: {
-    type: 'string',
+    type: "string",
     unique: true
   }
 });
 
-var commentSchema = mongoose.Schema({ content: 'string' });
+const commentSchema = mongoose.Schema({ content: "string" });
 
-var blogPostSchema = mongoose.Schema({
-  title: 'string',
-  content: 'string',
-  author: { type: mongoose.Schema.Types.ObjectId, ref: 'Author' },
+const blogPostSchema = mongoose.Schema({
+  title: "string",
+  content: "string",
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "Author" },
   comments: [commentSchema]
 });
 
-blogPostSchema.pre('find', function(next) {
+blogPostSchema.pre("find", function(next) {
   this.populate('author');
   next();
 });
 
-blogPostSchema.pre('findOne', function(next) {
-  this.populate('author');
+blogPostSchema.pre("findOne", function(next) {
+  this.populate("author");
   next();
 });
 
-blogPostSchema.virtual('authorName').get(function() {
+blogPostSchema.virtual("authorName").get(function() {
   return `${this.author.firstName} ${this.author.lastName}`.trim();
 });
 
@@ -45,7 +45,7 @@ blogPostSchema.methods.serialize = function() {
   };
 };
 
-var Author = mongoose.model('Author', authorSchema);
-const BlogPost = mongoose.model('BlogPost', blogPostSchema);
+const Author = mongoose.model("Author", authorSchema);
+const BlogPost = mongoose.model("BlogPost", blogPostSchema);
 
-module.exports = {Author, BlogPost};
+module.exports = { Author, BlogPost };
